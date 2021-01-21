@@ -41,9 +41,7 @@ function App() {
     const text = tasks[index].text;
     const newTask = window.prompt("Введите ", text);
     if (newTask) {
-      setTasks(
-        tasks.map((item, i) => ({ text: index === i ? newTask : item.text }))
-      );
+      setTasks(tasks.map((item, i) => ({ text: index === i })));
     }
   };
 
