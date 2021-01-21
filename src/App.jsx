@@ -1,27 +1,27 @@
-import React from "react";
-import TodoItem from "./components/TodoItem";
+import React from 'react';
+import TodoItem from './components/TodoItem';
 
-const colors = ["grey", "red", "blue", "orange", "green"];
+const colors = ['grey', 'red', 'blue', 'orange', 'green'];
 
 function App() {
-  const inputRef = React.useRef();
-  const [activeColor, setActiveColor] = React.useState("");
+  // у меня работает удаление, добавление, редактирование и цвета
+  const [activeColor, setActiveColor] = React.useState('');
   const [tasks, setTasks] = React.useState([
     {
-      text: "Попробовать создать ToDo",
-      color: "green",
+      text: 'Попробовать создать ToDo',
+      color: 'grey',
     },
     {
-      text: "Ненавижу цвета",
-      color: "red",
+      text: 'Ненавижу цвета',
+      color: 'grey',
     },
   ]);
 
   const removeTask = (index) => {
     setTasks(
-      tasks.filter((obj, i) => {
+      tasks.filter((_, i) => {
         return index !== i;
-      })
+      }),
     );
   };
 
@@ -39,16 +39,16 @@ function App() {
 
   const editTask = (index) => {
     const text = tasks[index].text;
-    const newTask = window.prompt("Введите ", text);
+    const newTask = window.prompt('Введите ', text);
     if (newTask) {
-      setTasks(tasks.map((item, i) => ({ text: index === i })));
+      setTasks(tasks.map((_, i) => ({ text: index === i })));
     }
   };
 
   const searchEnter = (event, color) => {
-    if (event.key === "Enter") {
-      addTask(event.target.value, activeColor || "red");
-      event.target.value = "";
+    if (event.key === 'Enter') {
+      addTask(event.target.value, activeColor || 'grey');
+      event.target.value = '';
     }
   };
 
@@ -67,20 +67,13 @@ function App() {
           />
         ))}
         <div className="todo-input">
-          <input
-            type="text"
-            placeholder="Текст задачи..."
-            onKeyUp={searchEnter}
-          />
+          <input type="text" placeholder="Текст задачи..." onKeyUp={searchEnter} />
           <ul>
             {colors.map((color) => (
               <li
                 style={{ backgroundColor: `var(--${color})` }}
-                className={`todo-color ${
-                  activeColor === color ? "active" : ""
-                }`}
-                onClick={() => addColor(color)}
-              ></li>
+                className={`todo-color ${activeColor === color ? 'active' : ''}`}
+                onClick={() => addColor(color)}></li>
             ))}
           </ul>
         </div>
