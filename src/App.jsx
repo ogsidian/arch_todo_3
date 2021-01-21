@@ -12,7 +12,7 @@ function App() {
       color: "green",
     },
     {
-      text: "Сохранить задачи в массив стейта",
+      text: "Ненавижу цвета",
       color: "red",
     },
   ]);
